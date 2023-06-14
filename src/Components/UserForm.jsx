@@ -14,10 +14,10 @@ const onSubmit = values => {
 
 // in place of validate use validationSchema
 const validationSchema = Yup.object({
-    name : Yup.string().required('Required'),
+    username : Yup.string().required('Required'),
     email: Yup.string().email('EMail is not valid').required('Required'),
-    password: Yup.string().password('Password must be > 6').required('Required'),
-    confrimPassword: Yup.string().confrimPassword('Password must be > 6').required('Required'),
+    password: Yup.string().required('Required'),
+    confrimPassword: Yup.string().required('Required'),
 
 })
 
@@ -53,15 +53,12 @@ const UserForm = () => {
             validationSchema={validationSchema}
             >
                 <Form>
-                    <div className='form-control'>
                     <Field  
                         id="username"
                         type="text" 
                         name="username" 
                     />
-                    <ErrorMessage name="username"/>
-                    </div>
-                    
+                    <ErrorMessage name="username"/>                    
                     <Field  
                         id="email"
                         type="email" 
