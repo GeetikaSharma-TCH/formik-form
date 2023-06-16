@@ -5,7 +5,9 @@ const initialValues = {
     username: '', 
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    address: "",
+    confirm_address: ""
 }
 
 const onSubmit = values => {
@@ -18,7 +20,8 @@ const validationSchema = Yup.object({
     email: Yup.string().email('EMail is not valid').required('Required'),
     password: Yup.string().required('Required'),
     confrimPassword: Yup.string().required('Required'),
-
+    address: Yup.string().required('Required'), 
+    confirm_address: Yup.string().required('Required')
 })
 
 // const validate = values => {
@@ -53,30 +56,59 @@ const UserForm = () => {
             validationSchema={validationSchema}
             >
                 <Form>
+                    <label>Username: </label>
                     <Field  
                         id="username"
                         type="text" 
                         name="username" 
                     />
-                    <ErrorMessage name="username"/>                    
+                    <ErrorMessage name="username"/><br/>
+                    <label>EMail: </label>
                     <Field  
                         id="email"
                         type="email" 
                         name="email" 
                     />
-                    <ErrorMessage name="email"/>
+                    <ErrorMessage name="email"/><br/>
+                    <label>Password: </label>
                     <Field
                         id="password"  
                         type="password" 
                         name="password" 
                     />
-                    <ErrorMessage name="password"/>
+                    <ErrorMessage name="password"/><br/>
+                    <label>Address: </label>
+                    <Field
+                        id="address"
+                        name="address"
+                        as="textarea" // component="textarea"
+                    ></Field>
+                    <ErrorMessage name="address"></ErrorMessage><br/>
+
+                    {/* use as attribute and componenet */}
+                    {/* <label>ConfirmPassword: </label>
                     <Field  
                         id="confirmPasssword"
                         type="password" 
                         name="confirmPasssword" 
+                        as="textarea"
                     />
-                    <ErrorMessage name="confirmPasssword"/>
+                    <ErrorMessage name="confirmPasssword"/><br/> */}
+                    
+                    {/* Using render props pattern*/}
+                    <label>Confirm Address: </label>
+                    <Field name="confirm_address">
+                    {(props) => {
+                        console.log('props===', props)
+                        const {field, meta} = props
+                        return (
+                            <div>
+                                <input id="confirm_address" type="textarea" {...field}/>
+                                {meta.touched && meta.error ? meta.error : null}     
+                            </div>
+                        )
+                    }}</Field>
+                    <ErrorMessage name="address"></ErrorMessage><br/>
                     <button type="submit">Register</button>
                 </Form>
         </Formik>
