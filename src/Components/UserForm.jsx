@@ -8,7 +8,12 @@ const initialValues = {
     password: "",
     confirmPassword: "",
     address: "",
-    confirm_address: ""
+    confirm_address: "",
+    social: {
+        facebook: "",
+        linkedIn: "",
+    }
+    
 }
 
 const onSubmit = values => {
@@ -57,6 +62,8 @@ const UserForm = () => {
             validationSchema={validationSchema}
             >
                 <Form>
+
+                    {/* username */}
                     <label>Username: </label>
                     <Field  
                         id="username"
@@ -64,6 +71,8 @@ const UserForm = () => {
                         name="username" 
                     />
                     <ErrorMessage name="username" component={TextError}/><br/>
+                    
+                    {/* EMail */}
                     <label>EMail: </label>
                     <Field  
                         id="email"
@@ -71,13 +80,17 @@ const UserForm = () => {
                         name="email" 
                     />
                     <ErrorMessage name="email" component={TextError}/><br/>
+                    
+                    {/* {Password} */}
                     <label>Password: </label>
                     <Field
-                        id="password"  
+                        id="password"  Facebook
                         type="password" 
                         name="password" 
                     />
                     <ErrorMessage name="password" component={TextError}/><br/>
+
+                    {/*Address */}
                     <label>Address: </label>
                     <Field
                         id="address"
@@ -86,6 +99,7 @@ const UserForm = () => {
                     ></Field>
                     <ErrorMessage name="address" component={TextError}></ErrorMessage><br/>
 
+                    {/*Confirm Address */}
                     {/* use as attribute and componenet */}
                     {/* <label>ConfirmPassword: </label>
                     <Field  
@@ -110,6 +124,24 @@ const UserForm = () => {
                         )
                     }}</Field>
                     <ErrorMessage name="confirm_address" component={TextError}></ErrorMessage><br/>
+
+                    {/* Facebook Social*/}
+                    <label>Facebook: </label>
+                    <Field
+                        id="social.facebook"  
+                        type="text" 
+                        name="social.facebook" 
+                    />
+                    <ErrorMessage name="social.facebook" component={TextError}/><br/>
+
+                    {/* Linkedin Social*/}
+                    <label>Linked In: </label>
+                    <Field
+                        id="social.linkedIn"  
+                        type="text" 
+                        name="social.linkedIn" 
+                    />
+                    <ErrorMessage name="social.linkedIn" component={TextError}/><br/>
                     <button type="submit">Register</button>
                 </Form>
         </Formik>
