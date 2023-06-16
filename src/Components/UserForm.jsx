@@ -27,7 +27,7 @@ const validationSchema = Yup.object({
     password: Yup.string().required('Required'),
     confrimPassword: Yup.string().required('Required'),
     address: Yup.string().required('Required'), 
-    confirm_address: Yup.string().required('Required')
+    confirm_address: Yup.string().required('Required'),
 })
 
 // const validate = values => {
@@ -84,7 +84,7 @@ const UserForm = () => {
                     {/* {Password} */}
                     <label>Password: </label>
                     <Field
-                        id="password"  Facebook
+                        id="password"
                         type="password" 
                         name="password" 
                     />
