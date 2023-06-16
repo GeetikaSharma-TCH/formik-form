@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import TextError from './ErrorComponent/textError';
 const initialValues = {
     username: '', 
     email: "",
@@ -62,28 +63,28 @@ const UserForm = () => {
                         type="text" 
                         name="username" 
                     />
-                    <ErrorMessage name="username"/><br/>
+                    <ErrorMessage name="username" component={TextError}/><br/>
                     <label>EMail: </label>
                     <Field  
                         id="email"
                         type="email" 
                         name="email" 
                     />
-                    <ErrorMessage name="email"/><br/>
+                    <ErrorMessage name="email" component={TextError}/><br/>
                     <label>Password: </label>
                     <Field
                         id="password"  
                         type="password" 
                         name="password" 
                     />
-                    <ErrorMessage name="password"/><br/>
+                    <ErrorMessage name="password" component={TextError}/><br/>
                     <label>Address: </label>
                     <Field
                         id="address"
                         name="address"
                         as="textarea" // component="textarea"
                     ></Field>
-                    <ErrorMessage name="address"></ErrorMessage><br/>
+                    <ErrorMessage name="address" component={TextError}></ErrorMessage><br/>
 
                     {/* use as attribute and componenet */}
                     {/* <label>ConfirmPassword: </label>
@@ -93,22 +94,22 @@ const UserForm = () => {
                         name="confirmPasssword" 
                         as="textarea"
                     />
-                    <ErrorMessage name="confirmPasssword"/><br/> */}
+                    <ErrorMessage name="confirmPasssword" component={TextError}/><br/> */}
                     
                     {/* Using render props pattern*/}
                     <label>Confirm Address: </label>
                     <Field name="confirm_address">
                     {(props) => {
                         console.log('props===', props)
-                        const {field, meta} = props
+                        const {field} = props // const {field, form, meta}
                         return (
                             <div>
                                 <input id="confirm_address" type="textarea" {...field}/>
-                                {meta.touched && meta.error ? meta.error : null}     
+                                {/* {meta.touched && meta.error ? meta.error : null}      */}
                             </div>
                         )
                     }}</Field>
-                    <ErrorMessage name="address"></ErrorMessage><br/>
+                    <ErrorMessage name="confirm_address" component={TextError}></ErrorMessage><br/>
                     <button type="submit">Register</button>
                 </Form>
         </Formik>
